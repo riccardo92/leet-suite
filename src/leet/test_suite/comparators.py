@@ -9,3 +9,6 @@ def nested_list_comparator(l1: list, l2: list) -> bool:
         bool: whether the lists are equal
     """
     return sorted([sorted(a) for a in l1]) == sorted([sorted(b) for b in l2])
+
+
+# lambda x, y: sorted(x) == sorted(y)

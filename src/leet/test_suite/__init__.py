@@ -6,6 +6,17 @@ from typing import Callable, List, Optional
 from ascii_graph import Pyasciigraph
 from loguru import logger
 
+LEET_STR = """
+  _      ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ _______
+ | |    |  ____|  ____|  ____|  ____|  ____|  ____|  ____|  ____|  ____|  ____|__   __|
+ | |    | |__  | |__  | |__  | |__  | |__  | |__  | |__  | |__  | |__  | |__     | |
+ | |    |  __| |  __| |  __| |  __| |  __| |  __| |  __| |  __| |  __| |  __|    | |
+ | |____| |____| |____| |____| |____| |____| |____| |____| |____| |____| |____   | |
+ |______|______|______|______|______|______|______|______|______|______|______|  |_|
+
+
+"""
+
 
 class Case:
     def __init__(
@@ -19,6 +30,7 @@ class Case:
         self.enabled = enabled
         self.disabled_from_here = disabled_from_here
         self.enabled_from_here = enabled_from_here
+
         if "solution" in kwargs:
             self.solution = kwargs["solution"]
             self.input_args = {k: v for k, v in kwargs.items() if k != "solution"}
@@ -57,7 +69,10 @@ class Submission:
         self.throw = throw
         self.verbose = verbose
 
-    def print_stats(self, cases: list = [], overall_stats: dict = {}):
+        if verbose:
+            print(LEET_STR)
+
+    def print_stats(self, overall_stats: dict = {}):
         skipped_percentage = 100
         correct_percentage = 0
         if len(self.cases) > overall_stats["skipped"]:
@@ -85,9 +100,7 @@ class Submission:
         else:
             logger.info(corr_str)
 
-    def display_runtime_graph(
-        self, overall_stats: dict = {}, stats: list = [], logarithmic: bool = False
-    ):
+    def display_runtime_graph(self, stats: list = [], logarithmic: bool = False):
         def transf(x):
             return x
 
@@ -214,5 +227,5 @@ class Submission:
             if self.verbose:
                 print("^" * 100)
         if self.verbose:
-            self.print_stats(cases=self.cases, overall_stats=overall_stats)
-            self.display_runtime_graph(overall_stats=overall_stats, stats=stats)
+            self.print_stats(overall_stats=overall_stats)
+            self.display_runtime_graph(stats=stats)
