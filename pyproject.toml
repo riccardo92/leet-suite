@@ -41,7 +41,7 @@ tag_format = "$version"
 changelog_incremental = true
 update_changelog_on_bump = true
 version_files = ["src/leet/__init__.py:__version__", "pyproject.toml:^version"]
-bump_message = "release $current_version -> $new_version ***NO_CI***"
+bump_message = "release $current_version -> $new_version"
 
 [tool.deptry]
 pep621_dev_dependency_groups = ["precommit", "test"]
