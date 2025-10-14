@@ -1,11 +1,12 @@
 [project]
 name = "leet-suite"
-version = "0.0.1"
+version = "0.1.0"
 description = "LeetSuite"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "ascii-graph>=1.5.2",
+    "commitizen>=4.9.1",
 ]
 
 [dependency-groups]
@@ -36,7 +37,7 @@ log_cli = "true"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.1"
+version = "0.1.0"
 tag_format = "$version"
 changelog_incremental = true
 update_changelog_on_bump = true
