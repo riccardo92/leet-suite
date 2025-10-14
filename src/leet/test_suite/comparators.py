@@ -1,3 +1,6 @@
+import math
+
+
 def nested_list_comparator(l1: list, l2: list) -> bool:
     """Are a and b equal in anything but order?
 
@@ -11,4 +14,17 @@ def nested_list_comparator(l1: list, l2: list) -> bool:
     return sorted([sorted(a) for a in l1]) == sorted([sorted(b) for b in l2])
 
 
-# lambda x, y: sorted(x) == sorted(y)
+def float_comparator(x: float, y: float) -> bool:
+    """Checks equality of x and y of type float.
+
+    This is needed due to floating-point precision errors.
+
+    Args:
+        x (float): A float number
+        y (float): A float number
+
+    Returns:
+        bool: whether the float numbers are equal
+
+    """
+    return math.isclose(x, y)
