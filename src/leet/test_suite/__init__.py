@@ -120,6 +120,7 @@ class Submission:
     def run(
         self,
         comparator: Callable = lambda x, y: x == y,
+        comparator_params: Optional[dict] = None,
         inplace_arg: Optional[str] = None,
     ):
         logger.info("Starting run.")
@@ -175,7 +176,9 @@ class Submission:
             overall_stats["runtime"] += e
 
             if self.inplace:
-                res = comparator(case.input_args[inplace_arg], case.solution)
+                res = comparator(
+                    case.input_args[inplace_arg], case.solution, **comparator_params
+                )
                 if self.verbose and not res:
                     if self.verbose:
                         logger.info("Actual solution:")
@@ -201,7 +204,7 @@ class Submission:
                         logger.info(f"Took {e:.6f} seconds.")
 
             else:
-                res = comparator(case.solution, sol)
+                res = comparator(case.solution, sol, **comparator_params)
 
                 if self.verbose and not res:
                     logger.info("Actual solution:")
